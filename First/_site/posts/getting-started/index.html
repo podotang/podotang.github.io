@@ -18,6 +18,8 @@
 <!-- `site.alt_lang` can specify a language different from the UI -->
 <html lang="en" 
   
+    data-mode="light|dark"
+  
 >
   <!-- The Head -->
 
@@ -46,20 +48,20 @@
 <meta property="og:description" content="Prerequisites" />
 <link rel="canonical" href="http://localhost:4000/posts/getting-started/" />
 <meta property="og:url" content="http://localhost:4000/posts/getting-started/" />
-<meta property="og:site_name" content="Chirpy" />
+<meta property="og:site_name" content="YUJIN JUNG" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2019-08-09T20:55:00+08:00" />
+<meta property="article:published_time" content="2019-08-09T21:55:00+09:00" />
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="Getting Started" />
 <meta name="twitter:site" content="@twitter_username" />
 <meta name="twitter:creator" content="@cotes2020" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Cotes Chung","url":"https://github.com/cotes2020/"},"dateModified":"2019-08-09T20:55:00+08:00","datePublished":"2019-08-09T20:55:00+08:00","description":"Prerequisites","headline":"Getting Started","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/posts/getting-started/"},"url":"http://localhost:4000/posts/getting-started/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Cotes Chung","url":"https://github.com/cotes2020/"},"dateModified":"2019-08-09T21:55:00+09:00","datePublished":"2019-08-09T21:55:00+09:00","description":"Prerequisites","headline":"Getting Started","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/posts/getting-started/"},"url":"http://localhost:4000/posts/getting-started/"}</script>
 <!-- End Jekyll SEO tag -->
 
   
 
-  <title>Getting Started | Chirpy
+  <title>Getting Started | YUJIN JUNG
   </title>
 
   <!--
@@ -74,8 +76,8 @@
 <link rel="icon" type="image/png" sizes="16x16" href="/assets/img/favicons/favicon-16x16.png">
 <link rel="manifest" href="/assets/img/favicons/site.webmanifest">
 <link rel="shortcut icon" href="/assets/img/favicons/favicon.ico">
-<meta name="apple-mobile-web-app-title" content="Chirpy">
-<meta name="application-name" content="Chirpy">
+<meta name="apple-mobile-web-app-title" content="YUJIN JUNG">
+<meta name="application-name" content="YUJIN JUNG">
 <meta name="msapplication-TileColor" content="#da532c">
 <meta name="msapplication-config" content="/assets/img/favicons/browserconfig.xml">
 <meta name="theme-color" content="#ffffff">
@@ -122,151 +124,6 @@
   <!-- JavaScript -->
 
   
-    <!-- Switch the mode between dark and light. -->
-
-<script type="text/javascript">
-  class ModeToggle {
-    static get MODE_KEY() {
-      return 'mode';
-    }
-    static get MODE_ATTR() {
-      return 'data-mode';
-    }
-    static get DARK_MODE() {
-      return 'dark';
-    }
-    static get LIGHT_MODE() {
-      return 'light';
-    }
-    static get ID() {
-      return 'mode-toggle';
-    }
-
-    constructor() {
-      if (this.hasMode) {
-        if (this.isDarkMode) {
-          if (!this.isSysDarkPrefer) {
-            this.setDark();
-          }
-        } else {
-          if (this.isSysDarkPrefer) {
-            this.setLight();
-          }
-        }
-      }
-
-      let self = this;
-
-      /* always follow the system prefers */
-      this.sysDarkPrefers.addEventListener('change', () => {
-        if (self.hasMode) {
-          if (self.isDarkMode) {
-            if (!self.isSysDarkPrefer) {
-              self.setDark();
-            }
-          } else {
-            if (self.isSysDarkPrefer) {
-              self.setLight();
-            }
-          }
-
-          self.clearMode();
-        }
-
-        self.notify();
-      });
-    } /* constructor() */
-
-    get sysDarkPrefers() {
-      return window.matchMedia('(prefers-color-scheme: dark)');
-    }
-
-    get isSysDarkPrefer() {
-      return this.sysDarkPrefers.matches;
-    }
-
-    get isDarkMode() {
-      return this.mode === ModeToggle.DARK_MODE;
-    }
-
-    get isLightMode() {
-      return this.mode === ModeToggle.LIGHT_MODE;
-    }
-
-    get hasMode() {
-      return this.mode != null;
-    }
-
-    get mode() {
-      return sessionStorage.getItem(ModeToggle.MODE_KEY);
-    }
-
-    /* get the current mode on screen */
-    get modeStatus() {
-      if (this.isDarkMode || (!this.hasMode && this.isSysDarkPrefer)) {
-        return ModeToggle.DARK_MODE;
-      } else {
-        return ModeToggle.LIGHT_MODE;
-      }
-    }
-
-    setDark() {
-      document.documentElement.setAttribute(ModeToggle.MODE_ATTR, ModeToggle.DARK_MODE);
-      sessionStorage.setItem(ModeToggle.MODE_KEY, ModeToggle.DARK_MODE);
-    }
-
-    setLight() {
-      document.documentElement.setAttribute(ModeToggle.MODE_ATTR, ModeToggle.LIGHT_MODE);
-      sessionStorage.setItem(ModeToggle.MODE_KEY, ModeToggle.LIGHT_MODE);
-    }
-
-    clearMode() {
-      document.documentElement.removeAttribute(ModeToggle.MODE_ATTR);
-      sessionStorage.removeItem(ModeToggle.MODE_KEY);
-    }
-
-    /* Notify another plugins that the theme mode has changed */
-    notify() {
-      window.postMessage(
-        {
-          direction: ModeToggle.ID,
-          message: this.modeStatus
-        },
-        '*'
-      );
-    }
-
-    flipMode() {
-      if (this.hasMode) {
-        if (this.isSysDarkPrefer) {
-          if (this.isLightMode) {
-            this.clearMode();
-          } else {
-            this.setLight();
-          }
-        } else {
-          if (this.isDarkMode) {
-            this.clearMode();
-          } else {
-            this.setDark();
-          }
-        }
-      } else {
-        if (this.isSysDarkPrefer) {
-          this.setLight();
-        } else {
-          this.setDark();
-        }
-      }
-
-      this.notify();
-    } /* flipMode() */
-  } /* ModeToggle */
-
-  const modeToggle = new ModeToggle();
-</script>
-
-  
 
   <!-- A placeholder to allow defining custom metadata -->
 
@@ -286,9 +143,9 @@
     </a>
 
     <h1 class="site-title">
-      <a href="/">Chirpy</a>
+      <a href="/">YUJIN JUNG</a>
     </h1>
-    <p class="site-subtitle fst-italic mb-0">A text-focused Jekyll theme</p>
+    <p class="site-subtitle fst-italic mb-0">정유진 Backend Developer java,spring</p>
   </header>
   <!-- .profile-wrapper -->
 
@@ -348,21 +205,13 @@
 
   <div class="sidebar-bottom d-flex flex-wrap  align-items-center w-100">
     
-      <button type="button" class="mode-toggle btn" aria-label="Switch Mode">
-        <i class="fas fa-adjust"></i>
-      </button>
-
-      
-        <span class="icon-border"></span>
-      
-    
 
     
       
 
       
         <a
-          href="https://github.com/github_username"
+          href="https://github.com/podotang"
           aria-label="github"
           
 
@@ -408,7 +257,7 @@
 
       
         <a
-          href="javascript:location.href = 'mailto:' + ['example','domain.com'].join('@')"
+          href="javascript:location.href = 'mailto:' + ['syj6180','naver.com'].join('@')"
           aria-label="email"
           
 
@@ -1326,7 +1175,7 @@
     
       
       <a
-        href="https://twitter.com/intent/tweet?text=Getting%20Started%20-%20Chirpy&url=http%3A%2F%2Flocalhost%3A4000%2Fposts%2Fgetting-started%2F"
+        href="https://twitter.com/intent/tweet?text=Getting%20Started%20-%20YUJIN%20JUNG&url=http%3A%2F%2Flocalhost%3A4000%2Fposts%2Fgetting-started%2F"
         data-bs-toggle="tooltip"
         data-bs-placement="top"
         title="Twitter"
@@ -1339,7 +1188,7 @@
     
       
       <a
-        href="https://www.facebook.com/sharer/sharer.php?title=Getting%20Started%20-%20Chirpy&u=http%3A%2F%2Flocalhost%3A4000%2Fposts%2Fgetting-started%2F"
+        href="https://www.facebook.com/sharer/sharer.php?title=Getting%20Started%20-%20YUJIN%20JUNG&u=http%3A%2F%2Flocalhost%3A4000%2Fposts%2Fgetting-started%2F"
         data-bs-toggle="tooltip"
         data-bs-placement="top"
         title="Facebook"
@@ -1352,7 +1201,7 @@
     
       
       <a
-        href="https://t.me/share/url?url=http%3A%2F%2Flocalhost%3A4000%2Fposts%2Fgetting-started%2F&text=Getting%20Started%20-%20Chirpy"
+        href="https://t.me/share/url?url=http%3A%2F%2Flocalhost%3A4000%2Fposts%2Fgetting-started%2F&text=Getting%20Started%20-%20YUJIN%20JUNG"
         data-bs-toggle="tooltip"
         data-bs-placement="top"
         title="Telegram"
@@ -1805,7 +1654,7 @@ H3 - ...
   <p>
     ©
     <time>2023</time>
-    <a href="https://twitter.com/username">your_full_name</a>.
+    <a href="https://twitter.com/username">정유진 YUJIN JUNG</a>.
     
       <span
         data-bs-toggle="tooltip"
