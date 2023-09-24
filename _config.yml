@@ -20,8 +20,7 @@ timezone: Asia/Shanghai
 
 title: Yujin Jung # the main title
 
-tagline: 정유진 Backend Developer 
-Java,Spring # it will display as the sub-title
+tagline: 정유진 Backend Developer Java,Spring # it will display as the sub-title
 
 description: >- # used by seo meta and the atom feed
   A minimal, responsive and feature-rich Jekyll theme for technical writing.
