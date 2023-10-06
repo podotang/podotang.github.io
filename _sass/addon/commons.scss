@@ -685,8 +685,16 @@ $btn-mb: 0.5rem;
   overflow-y: auto;
   width: $sidebar-width;
   z-index: 99;
-  background: var(--sidebar-bg);
+  // background: var(--sidebar-bg);
   border-right: 1px solid var(--sidebar-border-color);
+
+  background: url('/assets/img/야자수.jpg');
+  background-size: 100% 100%;
+  background-position: center;
+
+
+
+
 
   /* Hide scrollbar for Chrome, Safari and Opera */
   &::-webkit-scrollbar {
@@ -734,31 +742,36 @@ $btn-mb: 0.5rem;
   }
 
   .site-title {
-    font-family: inherit;
+    font-family: 'Roboto Condensed', sans-serif;
+    // font-family: inherit;
     font-weight: 900;
     font-size: 1.75rem;
     line-height: 1.2;
     letter-spacing: 0.25px;
     margin-top: 1.25rem;
     margin-bottom: 0.5rem;
+    color: white;
 
     a {
       @extend %clickable-transition;
       @extend %sidebar-link-hover;
 
-      color: var(--site-title-color);
+      // color: var(--site-title-color);
     }
   }
 
   .site-subtitle {
+    font-family: 'Roboto Condensed', sans-serif;
     font-size: 95%;
-    color: var(--site-subtitle-color);
+    // color: var(--site-subtitle-color);
+    color: white;
     margin-top: 0.25rem;
     word-spacing: 1px;
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
+    
   }
 
   ul {
@@ -797,7 +810,9 @@ $btn-mb: 0.5rem;
       &.active {
         .nav-link {
           color: var(--sidebar-active-color);
-          background-color: var(--sidebar-hover-bg);
+          // background-color: var(--sidebar-hover-bg);
+          background-color:rgb(212, 223, 225);
+
 
           span {
             opacity: 1;
